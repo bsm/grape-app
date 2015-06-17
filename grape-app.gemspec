@@ -10,8 +10,8 @@ Gem::Specification.new do |s|
   s.homepage      = 'https://github.com/bsm/grape-app'
   s.license       = 'MIT'
 
-  s.files         = `git ls-files`.split('\n')
-  s.test_files    = `git ls-files -- test/*`.split('\n')
+  s.files         = `git ls-files`.lines.map(&:chomp)
+  s.test_files    = `git ls-files -- test/*`.lines.map(&:chomp)
   s.require_paths = ['lib']
   s.required_ruby_version = '>= 1.9.3'
 
