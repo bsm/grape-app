@@ -1,0 +1,2 @@
+class MyLib
+end
