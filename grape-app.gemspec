@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name          = 'grape-app'
-  s.version       = '0.3.2'
+  s.version       = '0.3.3'
   s.authors       = ['Black Square Media Ltd']
   s.email         = ['info@blacksquaremedia.com']
   s.summary       = %{Stanalone Grape API apps}
