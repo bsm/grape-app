@@ -1,5 +1,5 @@
 if Grape::App.config.raise_on_missing_translations
-  handler = -> (exception, *) { exception = exception.to_exception if exception.respond_to?(:to_exception); raise exception }
+  handler = lambda {|exception, *| exception = exception.to_exception if exception.respond_to?(:to_exception); raise exception }
   I18n.exception_handler = handler
 end
 
