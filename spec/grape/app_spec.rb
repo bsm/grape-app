@@ -7,7 +7,7 @@ RSpec.describe Grape::App do
 
   it 'should have an env' do
     expect(subject.env).to be_instance_of(ActiveSupport::StringInquirer)
-    expect(subject.env).to eq("development")
+    expect(subject.env).to eq("test")
   end
 
   it 'should have an root' do
@@ -30,7 +30,7 @@ RSpec.describe Grape::App do
 
   it 'should read env specific initializers' do
     expect(subject.config).to eq(
-      dev_specific: true,
+      test_specific: true,
       raise_on_missing_translations: true,
       cors_allow_origins: ["example.com"],
     )
