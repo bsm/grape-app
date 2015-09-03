@@ -5,8 +5,9 @@ end
 
 if defined?(ActiveRecord)
   require 'yaml'
+  require 'erb'
 
-  configurations = YAML.load(Grape::App.root.join('config', 'database.yml').read)
+  configurations = YAML.load(ERB.new(Grape::App.root.join('config', 'database.yml').read).result)
   configurations[Grape::App.env.to_s]['url'] = ENV['DATABASE_URL'] if ENV['DATABASE_URL']
 
   ActiveRecord::Base.configurations = configurations
