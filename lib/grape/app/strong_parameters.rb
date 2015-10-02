@@ -18,7 +18,7 @@ module Grape::App::StrongParameters
       end
     end
 
-    @permitted = true
+    @_permitted = true
     self
   end
 
