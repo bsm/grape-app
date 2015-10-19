@@ -8,7 +8,10 @@ if defined?(ActiveRecord)
   require 'erb'
 
   configurations = YAML.load(ERB.new(Grape::App.root.join('config', 'database.yml').read).result) || {}
-  configurations[Grape::App.env.to_s]['url'] = ENV['DATABASE_URL'] if ENV['DATABASE_URL']
+  if ENV['DATABASE_URL']
+    configurations[Grape::App.env.to_s] ||= {}
+    configurations[Grape::App.env.to_s]['url'] ||= ENV['DATABASE_URL']
+  end
 
   ActiveRecord::Base.configurations = configurations
   ActiveRecord::Base.default_timezone = :utc
