@@ -3,6 +3,7 @@ module API
 
   # Autoload API components
   autoload :V1
+  autoload :Base
 end
 
 
