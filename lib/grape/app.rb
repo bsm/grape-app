@@ -7,6 +7,7 @@ require 'active_support/inflector/methods'
 require 'activesupport/json_encoder'
 require 'hashie-forbidden_attributes'
 require 'rack/cors'
+require 'rack/ssl-enforcer'
 
 class Grape::App < Grape::API
   include ActiveSupport::Configurable

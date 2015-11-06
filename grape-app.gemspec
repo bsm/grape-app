@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name          = 'grape-app'
-  s.version       = '0.3.10'
+  s.version       = '0.3.11'
   s.authors       = ['Black Square Media Ltd']
   s.email         = ['info@blacksquaremedia.com']
   s.summary       = %{Stanalone Grape API apps}
@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'activesupport-json_encoder'
   s.add_dependency 'hashie-forbidden_attributes'
   s.add_dependency 'rack-cors'
+  s.add_dependency 'rack-ssl-enforcer'
   s.add_dependency 'thor'
 
   s.add_development_dependency 'bundler'
