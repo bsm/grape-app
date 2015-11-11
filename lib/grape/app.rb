@@ -21,6 +21,11 @@ class Grape::App < Grape::API
       # Require bundle
       Bundler.require :default, env.to_sym
 
+      # Update load path
+      $LOAD_PATH.push @root.join('lib').to_s
+      $LOAD_PATH.push @root.join('app').to_s
+      $LOAD_PATH.push @root.join('app', 'models').to_s
+
       # Load initializers
       require 'grape/app/initializers/pre'
       require_one 'config', 'environments', env
@@ -28,10 +33,6 @@ class Grape::App < Grape::API
       require 'grape/app/initializers/post'
 
       # Load app
-      $LOAD_PATH.push @root.join('lib').to_s
-      $LOAD_PATH.push @root.join('app').to_s
-      $LOAD_PATH.push @root.join('app', 'models').to_s
-
       require_one 'app', 'models'
       require_one 'app', 'api'
     end

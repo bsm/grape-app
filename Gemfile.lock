@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    grape-app (0.3.12)
+    grape-app (0.3.13)
       activesupport
       activesupport-json_encoder
       grape
