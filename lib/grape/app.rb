@@ -28,9 +28,9 @@ class Grape::App < Grape::API
       require 'grape/app/initializers/post'
 
       # Load app
-      $LOAD_PATH.push @root.join('lib')
-      $LOAD_PATH.push @root.join('app')
-      $LOAD_PATH.push @root.join('app', 'models')
+      $LOAD_PATH.push @root.join('lib').to_s
+      $LOAD_PATH.push @root.join('app').to_s
+      $LOAD_PATH.push @root.join('app', 'models').to_s
 
       require_one 'app', 'models'
       require_one 'app', 'api'
