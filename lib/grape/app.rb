@@ -22,9 +22,9 @@ class Grape::App < Grape::API
       Bundler.require :default, env.to_sym
 
       # Update load path
-      $LOAD_PATH.push @root.join('lib').to_s
-      $LOAD_PATH.push @root.join('app').to_s
-      $LOAD_PATH.push @root.join('app', 'models').to_s
+      $LOAD_PATH.push self.root.join('lib').to_s
+      $LOAD_PATH.push self.root.join('app').to_s
+      $LOAD_PATH.push self.root.join('app', 'models').to_s
 
       # Load initializers
       require 'grape/app/initializers/pre'
