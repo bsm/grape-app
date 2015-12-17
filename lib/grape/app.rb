@@ -73,7 +73,7 @@ class Grape::App < Grape::API
 
     def require_all(*args)
       args = args + ['**', '*.rb']
-      Dir[root.join(*args).to_s].each {|f| require f }
+      Dir[root.join(*args).to_s].sort.each {|f| require f }
     end
 
     def require_one(*args)
