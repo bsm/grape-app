@@ -1,5 +1,5 @@
 # Set default time-zone
-Time.zone = 'UTC'
+Time.zone_default = Time.find_zone!('UTC')
 
 # Configure big-decimal encoding
 ActiveSupport.encode_big_decimal_as_string = false
