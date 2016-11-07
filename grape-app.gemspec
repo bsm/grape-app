@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.test_files    = `git ls-files -z -- spec/*`.split("\x0")
   s.executables   = ['grape-app']
   s.require_paths = ['lib']
-  s.required_ruby_version = '>= 1.9.3'
+  s.required_ruby_version = '>= 2.2'
 
   s.add_dependency 'grape'
   s.add_dependency 'grape-entity'
