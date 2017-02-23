@@ -17,5 +17,7 @@ if defined?(ActiveRecord)
   ActiveRecord::Base.default_timezone = :utc
   ActiveRecord::Base.establish_connection(Grape::App.env.to_sym)
 
-  Grape::App.middleware.use ActiveRecord::ConnectionAdapters::ConnectionManagement
+  if defined?(ActiveRecord::ConnectionAdapters::ConnectionManagement)
+    Grape::App.middleware.use ActiveRecord::ConnectionAdapters::ConnectionManagement
+  end
 end
