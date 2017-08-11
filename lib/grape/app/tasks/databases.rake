@@ -26,10 +26,12 @@ namespace :db do
   task migration: :environment do
     abort "No NAME specified. Example usage: `rake db:migration NAME=create_widgets`" unless ENV["NAME"]
 
-    name = ENV["NAME"]
-    path = File.join(ActiveRecord::Migrator.migrations_path, "#{Time.now.utc.strftime('%Y%m%d%H%M%S')}_#{name}.rb")
+    migrations_path = ActiveRecord::Migrator.migrations_paths.first
 
-    FileUtils.mkdir_p(ActiveRecord::Migrator.migrations_path)
+    name = ENV["NAME"]
+    path = File.join(migrations_path, "#{Time.now.utc.strftime('%Y%m%d%H%M%S')}_#{name}.rb")
+
+    FileUtils.mkdir_p(migrations_path)
     File.write path, <<-MIGRATION.strip_heredoc
       class #{name.camelize} < ActiveRecord::Migration
         def change
