@@ -5,7 +5,6 @@ require 'active_support/string_inquirer'
 require 'active_support/configurable'
 require 'active_support/inflector/methods'
 require 'active_support/core_ext/time/zones'
-require 'hashie-forbidden_attributes'
 require 'rack/cors'
 require 'rack/ssl-enforcer'
 
