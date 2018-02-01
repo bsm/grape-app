@@ -1,9 +1,9 @@
 PATH
   remote: .
   specs:
-    grape-app (0.5.0)
+    grape-app (0.5.1)
       activesupport
-      grape
+      grape (>= 1.0.0)
       grape-entity
       rack-cors
       rack-ssl-enforcer
