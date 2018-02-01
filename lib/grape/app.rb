@@ -9,8 +9,6 @@ require 'rack/cors'
 require 'rack/ssl-enforcer'
 
 class Grape::App < Grape::API
-  include ActiveSupport::Configurable
-
   class << self
 
     # Run initializers
@@ -36,6 +34,20 @@ class Grape::App < Grape::API
       require_one 'app', 'api'
     end
 
+    # @return [Grape::App::Configuration] the configuration
+    def config
+      @_config ||= if respond_to?(:superclass) && superclass.respond_to?(:config)
+        superclass.config.inheritable_copy
+      else
+        Class.new(Grape::App::Configuration).new
+      end
+    end
+
+    # Configure the app
+    def configure
+      yield config
+    end
+
     # @return [Pathname] root path
     def root
       @root ||= Bundler.root.dup
@@ -55,13 +67,9 @@ class Grape::App < Grape::API
     def middleware
       config = self.config
       @middleware ||= Rack::Builder.new do
+        use Rack::Cors, &config.cors if config.cors
         use Rack::SslEnforcer if config.force_ssl
-        use Rack::Cors do
-          allow do
-            origins   *Array.wrap(config.cors_allow_origins)
-            resource  '*', headers: :any, methods: [:get, :post, :options, :delete, :put]
-          end
-        end if config.cors_allow_origins
+        instance_eval(&config.middleware) if config.middleware
 
         run Grape::App
       end
@@ -82,4 +90,5 @@ class Grape::App < Grape::API
   end
 end
 
+require 'grape/app/configuration'
 require 'grape/app/helpers'

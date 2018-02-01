@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name          = 'grape-app'
-  s.version       = '0.4.3'
+  s.version       = '0.5.0'
   s.authors       = ['Black Square Media Ltd']
   s.email         = ['info@blacksquaremedia.com']
   s.summary       = %{Stanalone Grape API apps}
@@ -28,6 +28,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec'
   s.add_development_dependency 'activerecord'
   s.add_development_dependency 'sqlite3'
-
+  s.add_development_dependency 'rack-test'
 end
 
