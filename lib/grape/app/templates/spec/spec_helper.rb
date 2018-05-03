@@ -12,10 +12,10 @@ RSpec.configure do |config|
     DatabaseCleaner.cleaning { example.run }
   end
 
-  # FactoryGirl
-  config.include FactoryGirl::Syntax::Methods
+  # FactoryBot
+  config.include FactoryBot::Syntax::Methods
   config.before :suite do
-    FactoryGirl.find_definitions
+    FactoryBot.find_definitions
   end
 
 end
