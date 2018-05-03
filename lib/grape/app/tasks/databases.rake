@@ -31,9 +31,11 @@ namespace :db do
     name = ENV["NAME"]
     path = File.join(migrations_path, "#{Time.now.utc.strftime('%Y%m%d%H%M%S')}_#{name}.rb")
 
+    ar_version = [ActiveRecord::VERSION::MAJOR, ActiveRecord::VERSION::MINOR].join('.')
+
     FileUtils.mkdir_p(migrations_path)
     File.write path, <<-MIGRATION.strip_heredoc
-      class #{name.camelize} < ActiveRecord::Migration
+      class #{name.camelize} < ActiveRecord::Migration[#{ar_version}]
         def change
         end
       end
