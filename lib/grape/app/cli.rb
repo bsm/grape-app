@@ -30,6 +30,18 @@ module Grape::App::CLI
 
   class Runner < Thor
     register Builder, :new, "new NAME", "create a new application"
+
+    desc 'console ENV', 'Launch console'
+    def console(env = 'development')
+      ENV['GRAPE_ENV'] = env
+      require File.expand_path('config/environment', Dir.pwd)
+
+      require 'irb'
+      require 'irb/completion'
+
+      ARGV.clear
+      IRB.start
+    end
   end
 
 end
