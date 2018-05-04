@@ -1,4 +1,4 @@
-Gem::Specification.new do |s|
+Gem::Specification.new do |s| # rubocop:disable Metrics/BlockLength
   s.name          = 'grape-app'
   s.version       = '0.5.2'
   s.authors       = ['Black Square Media Ltd']
