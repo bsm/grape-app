@@ -9,14 +9,4 @@ rescue LoadError
   # so it won't fail in production env, where rspec is usually not installed
 end
 
-desc 'Launch console'
-task console: :environment do
-  ::ARGV.clear
-
-  require 'irb'
-  require 'irb/completion'
-
-  IRB.start(Grape::App.root.to_s)
-end
-
 task default: :spec
