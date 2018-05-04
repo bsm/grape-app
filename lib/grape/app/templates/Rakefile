@@ -4,7 +4,6 @@ require 'grape/app/tasks'
 begin
   require 'rspec/core/rake_task'
   RSpec::Core::RakeTask.new(:spec)
-  Rake::Task['spec'].enhance ['db:test:prepare']
 rescue LoadError
   # so it won't fail in production env, where rspec is usually not installed
 end

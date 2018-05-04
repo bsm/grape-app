@@ -3,6 +3,11 @@ require File.expand_path('../../config/environment', __FILE__)
 
 RSpec.configure do |config|
 
+  # ActiveRecord::Migration
+  config.before :suite do
+    ActiveRecord::Migration.maintain_test_schema!
+  end if defined?(ActiveRecord)
+
   # DatabaseCleaner
   config.before :suite do
     DatabaseCleaner.strategy = :transaction
