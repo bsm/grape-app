@@ -4,7 +4,7 @@ Grape::App.configure do |c|
   c.cors do
     allow do
       origins '*'
-      resource '*', headers: :any, methods: [:get, :post, :options]
+      resource '*', headers: :any, methods: %i[get post options]
     end
   end
   c.middleware do

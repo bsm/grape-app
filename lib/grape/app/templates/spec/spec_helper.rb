@@ -1,8 +1,7 @@
 ENV['RACK_ENV'] ||= 'test'
-require File.expand_path('../../config/environment', __FILE__)
+require File.expand_path('../config/environment', __dir__)
 
 RSpec.configure do |config|
-
   # ActiveRecord::Migration
   config.before :suite do
     ActiveRecord::Migration.maintain_test_schema!
@@ -22,7 +21,6 @@ RSpec.configure do |config|
   config.before :suite do
     FactoryBot.find_definitions
   end
-
 end
 
 # Test with Airborne

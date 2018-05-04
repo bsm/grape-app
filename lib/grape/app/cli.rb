@@ -2,7 +2,6 @@ require 'grape/app'
 require 'thor'
 
 module Grape::App::CLI
-
   class Builder < Thor::Group
     include Thor::Actions
     argument :name, required: true
@@ -32,7 +31,7 @@ module Grape::App::CLI
     register Builder, :new, "new NAME", "create a new application"
 
     desc 'console ENV', 'Launch console'
-    def console(env = 'development')
+    def console(env='development')
       ENV['GRAPE_ENV'] = env
       require File.expand_path('config/environment', Dir.pwd)
 
@@ -43,7 +42,6 @@ module Grape::App::CLI
       IRB.start
     end
   end
-
 end
 
 Grape::App::CLI::Runner.start

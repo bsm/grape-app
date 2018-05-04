@@ -1,6 +1,4 @@
 #!/usr/bin/env ruby
 
-if File.exist?(File.expand_path('../../.git', __FILE__))
-  $:.unshift(File.expand_path('../../lib', __FILE__))
-end
+$LOAD_PATH.unshift(File.expand_path('../lib', __dir__)) if File.exist?(File.expand_path('../.git', __dir__))
 require "grape/app/cli"

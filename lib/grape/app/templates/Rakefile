@@ -5,7 +5,7 @@ begin
   require 'rspec/core/rake_task'
   RSpec::Core::RakeTask.new(:spec)
 rescue LoadError
-  # so it won't fail in production env, where rspec is usually not installed
+  nil # so it won't fail in production env, where rspec is usually not installed
 end
 
 task default: :spec

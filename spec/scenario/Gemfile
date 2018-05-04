@@ -1,4 +1,4 @@
 source 'https://rubygems.org'
 
-gem 'grape-app', path: '../../'
 gem 'activerecord', require: 'active_record'
+gem 'grape-app', path: '../../'

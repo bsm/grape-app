@@ -12,7 +12,7 @@ class Grape::App < Grape::API
   class << self
 
     # Run initializers
-    def init!(root = nil)
+    def init!(root=nil) # rubocop:disable Metrics/AbcSize
       @root = Pathname.new(root) if root
 
       # Require bundle
@@ -36,11 +36,11 @@ class Grape::App < Grape::API
 
     # @return [Grape::App::Configuration] the configuration
     def config
-      @_config ||= if respond_to?(:superclass) && superclass.respond_to?(:config)
-        superclass.config.inheritable_copy
-      else
-        Class.new(Grape::App::Configuration).new
-      end
+      @config ||= if respond_to?(:superclass) && superclass.respond_to?(:config)
+                    superclass.config.inheritable_copy
+                  else
+                    Class.new(Grape::App::Configuration).new
+                  end
     end
 
     # Configure the app
@@ -78,13 +78,13 @@ class Grape::App < Grape::API
     private
 
     def require_all(*args)
-      args = args + ['**', '*.rb']
+      args += ['**', '*.rb']
       Dir[root.join(*args).to_s].sort.each {|f| require f }
     end
 
     def require_one(*args)
       path = root.join(*args).to_s
-      require path if File.exists?("#{path}.rb")
+      require path if File.exist?("#{path}.rb")
     end
 
   end

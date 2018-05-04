@@ -10,7 +10,7 @@ ActiveRecord::Tasks::DatabaseTasks.tap do |config|
   end
 end
 
-namespace :db do
+namespace :db do # rubocop:disable Metrics/BlockLength
 
   Rake::Task['load_config'].clear
 

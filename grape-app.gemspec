@@ -1,12 +1,10 @@
-# encoding: utf-8
-
 Gem::Specification.new do |s|
   s.name          = 'grape-app'
   s.version       = '0.5.2'
   s.authors       = ['Black Square Media Ltd']
   s.email         = ['info@blacksquaremedia.com']
-  s.summary       = %{Stanalone Grape API apps}
-  s.description   = %{}
+  s.summary       = %(Stanalone Grape API apps)
+  s.description   = %()
   s.homepage      = 'https://github.com/bsm/grape-app'
   s.license       = 'MIT'
 
@@ -29,6 +27,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rake'
   s.add_development_dependency 'rspec'
   s.add_development_dependency 'rubocop'
-  s.add_development_dependency 'sqlite3'
+  # s.add_development_dependency 'sqlite3'
 end
-
