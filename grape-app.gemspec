@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name          = 'grape-app'
-  s.version       = '0.5.1'
+  s.version       = '0.5.2'
   s.authors       = ['Black Square Media Ltd']
   s.email         = ['info@blacksquaremedia.com']
   s.summary       = %{Stanalone Grape API apps}
@@ -16,18 +16,19 @@ Gem::Specification.new do |s|
   s.require_paths = ['lib']
   s.required_ruby_version = '>= 2.2'
 
+  s.add_dependency 'activesupport'
   s.add_dependency 'grape', '>= 1.0.0'
   s.add_dependency 'grape-entity'
-  s.add_dependency 'activesupport'
   s.add_dependency 'rack-cors'
   s.add_dependency 'rack-ssl-enforcer'
   s.add_dependency 'thor'
 
+  s.add_development_dependency 'activerecord'
   s.add_development_dependency 'bundler'
+  s.add_development_dependency 'rack-test'
   s.add_development_dependency 'rake'
   s.add_development_dependency 'rspec'
-  s.add_development_dependency 'activerecord'
+  s.add_development_dependency 'rubocop'
   s.add_development_dependency 'sqlite3'
-  s.add_development_dependency 'rack-test'
 end
 
