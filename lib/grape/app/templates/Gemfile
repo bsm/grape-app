@@ -13,7 +13,7 @@ end
 group 'test' do
   gem 'airborne'
   gem 'database_cleaner'
-  gem 'factory_girl'
+  gem 'factory_bot'
   gem 'faker'
   gem 'rspec-collection_matchers'
   gem 'rspec-its'

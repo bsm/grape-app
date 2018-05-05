@@ -6,6 +6,5 @@ module API
   autoload :Base
 end
 
-
 # Mount root API to app
 Grape::App.mount API::V1

@@ -4,7 +4,7 @@ RSpec.describe Grape::App do
   include Rack::Test::Methods
 
   subject { described_class }
-  before  { subject.init! File.expand_path('../../scenario', __FILE__) }
+  before  { subject.init! File.expand_path('../scenario', __dir__) }
 
   def app
     subject.middleware
@@ -56,7 +56,7 @@ RSpec.describe Grape::App do
     expect(last_response.body).to eq(%({"status":"OK"}))
     expect(last_response.headers).to include(
       "Access-Control-Allow-Origin" => "*",
-      "X-MyApp" => "true",
+      "X-MyApp"                     => "true",
     )
 
     header 'Origin', 'test.host'
@@ -65,7 +65,7 @@ RSpec.describe Grape::App do
     expect(last_response.body).to eq(%({"error":"bad request"}))
     expect(last_response.headers).to include(
       "Access-Control-Allow-Origin" => "*",
-      "X-MyApp" => "true",
+      "X-MyApp"                     => "true",
     )
   end
 

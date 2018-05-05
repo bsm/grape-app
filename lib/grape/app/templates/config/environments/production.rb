@@ -1,5 +1,4 @@
 Grape::App.configure do |config|
-
   # Force SSL
   # config.force_ssl = true
 
@@ -22,5 +21,4 @@ Grape::App.configure do |config|
 
   # Don't raise errors on missing translations
   # config.raise_on_missing_translations = false
-
 end

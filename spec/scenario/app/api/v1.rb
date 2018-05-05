@@ -3,11 +3,11 @@ class API::V1 < Grape::API
   format  :json
 
   rescue_from MyLib::BadRequest do |e|
-    error!({error: e}, 400)
+    error!({ error: e }, 400)
   end
 
   get '/ok' do
-    {status: 'OK'}
+    { status: 'OK' }
   end
 
   get '/failing' do
