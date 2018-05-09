@@ -1,6 +1,6 @@
 Gem::Specification.new do |s| # rubocop:disable Metrics/BlockLength
   s.name          = 'grape-app'
-  s.version       = '0.5.2'
+  s.version       = '0.5.3'
   s.authors       = ['Black Square Media Ltd']
   s.email         = ['info@blacksquaremedia.com']
   s.summary       = %(Stanalone Grape API apps)

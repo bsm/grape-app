@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    grape-app (0.5.2)
+    grape-app (0.5.3)
       activesupport
       grape (>= 1.0.0)
       grape-entity
