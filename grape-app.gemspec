@@ -1,6 +1,6 @@
 Gem::Specification.new do |s| # rubocop:disable Metrics/BlockLength
   s.name          = 'grape-app'
-  s.version       = '0.5.3'
+  s.version       = '0.6.0'
   s.authors       = ['Black Square Media Ltd']
   s.email         = ['info@blacksquaremedia.com']
   s.summary       = %(Stanalone Grape API apps)
@@ -15,7 +15,7 @@ Gem::Specification.new do |s| # rubocop:disable Metrics/BlockLength
   s.required_ruby_version = '>= 2.2'
 
   s.add_dependency 'activesupport'
-  s.add_dependency 'grape', '>= 1.0.0'
+  s.add_dependency 'grape', '>= 1.2.0'
   s.add_dependency 'grape-entity'
   s.add_dependency 'rack-cors'
   s.add_dependency 'rack-ssl-enforcer'

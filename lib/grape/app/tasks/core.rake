@@ -1,5 +1,5 @@
 task :environment do
-  require Bundler.root.join("config", "environment").to_s
+  require Bundler.root.join('config', 'environment').to_s
 end
 
 desc 'Launch console'
@@ -16,7 +16,7 @@ desc 'List all routes'
 task routes: :environment do
   Grape::App.routes.each do |route|
     method = route.request_method.ljust(7)
-    path   = route.path.sub(":version", route.version.to_s)
+    path   = route.path.sub(':version', route.version.to_s)
     puts "  #{method} #{path}"
   end
 end

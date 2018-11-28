@@ -12,7 +12,7 @@ class Grape::App < Grape::API
   class << self
 
     # Run initializers
-    def init!(root=nil) # rubocop:disable Metrics/AbcSize
+    def init!(root=nil)
       @root = Pathname.new(root) if root
 
       # Require bundle

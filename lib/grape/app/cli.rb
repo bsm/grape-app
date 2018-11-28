@@ -11,24 +11,24 @@ module Grape::App::CLI
     end
 
     def copy_templates
-      prefix = File.join(self.class.source_root, "")
+      prefix = File.join(self.class.source_root, '')
 
       Dir[File.join(self.class.source_root, '**', '*')].each do |file|
         next if File.directory?(file)
 
-        file.sub! prefix, ""
+        file.sub! prefix, ''
         copy_file file, File.join(name, file)
       end
     end
 
     def init_lib
-      empty_directory File.join(name, "lib", name)
+      empty_directory File.join(name, 'lib', name)
     end
 
   end
 
   class Runner < Thor
-    register Builder, :new, "new NAME", "create a new application"
+    register Builder, :new, 'new NAME', 'create a new application'
 
     desc 'console ENV', 'Launch console'
     def console(env='development')

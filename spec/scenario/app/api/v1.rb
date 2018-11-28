@@ -11,7 +11,7 @@ class API::V1 < Grape::API
   end
 
   get '/failing' do
-    raise MyLib::BadRequest, "bad request"
+    raise MyLib::BadRequest, 'bad request'
   end
 
 end
