@@ -8,7 +8,7 @@ require 'active_support/core_ext/time/zones'
 require 'rack/cors'
 require 'rack/ssl-enforcer'
 
-class Grape::App < Grape::API
+class Grape::App < Grape::API::Instance
   class << self
 
     # Run initializers

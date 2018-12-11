@@ -3,7 +3,6 @@ class MyLib
   end
 
   class Middleware
-
     def initialize(app)
       @app = app
     end
@@ -13,6 +12,5 @@ class MyLib
       headers['X-MyApp'] = 'true'
       [status, headers, body]
     end
-
   end
 end

@@ -1,4 +1,4 @@
-class API::V1 < Grape::API
+class API::V1 < API::Base
   version 'v1'
   format  :json
 
@@ -13,5 +13,4 @@ class API::V1 < Grape::API
   get '/failing' do
     raise MyLib::BadRequest, 'bad request'
   end
-
 end

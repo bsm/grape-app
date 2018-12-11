@@ -1,2 +1,2 @@
-class API::Base < Grape::API
+class API::Base < Grape::API::Instance
 end
