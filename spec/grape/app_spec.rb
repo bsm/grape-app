@@ -20,7 +20,7 @@ RSpec.describe Grape::App do
   end
 
   it 'should be an API instance' do
-    expect(subject).to be < Grape::API::Instance
+    expect(subject).to be < Grape::API
   end
 
   it 'should init with default time zone' do
