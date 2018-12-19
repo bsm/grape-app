@@ -1,7 +1,8 @@
 class Grape::App::Configuration < ActiveSupport::InheritableOptions
 
   def middleware(&block)
-    self.middleware = block if block
+    self[:middleware] ||= []
+    self[:middleware].push(block) if block
     super
   end
 
