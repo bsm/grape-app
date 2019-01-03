@@ -1,4 +1,4 @@
-class API::V1 < API::Base
+class API::V1 < Grape::API::Instance
   version 'v1'
   format  :json
 
