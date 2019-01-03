@@ -2,4 +2,4 @@ inherit_from:
   - https://bitbucket.org/bsm/misc/raw/master/rubocop/default.yml
 
 AllCops:
-  TargetRubyVersion: "2.3"
+  TargetRubyVersion: "2.4"

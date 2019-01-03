@@ -12,7 +12,7 @@ Gem::Specification.new do |s| # rubocop:disable Metrics/BlockLength
   s.test_files    = `git ls-files -z -- spec/*`.split("\x0")
   s.executables   = ['grape-app']
   s.require_paths = ['lib']
-  s.required_ruby_version = '>= 2.3'
+  s.required_ruby_version = '>= 2.4'
 
   s.add_dependency 'activesupport'
   s.add_dependency 'grape', '>= 1.2.0'
