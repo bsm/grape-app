@@ -7,7 +7,7 @@ class Grape::App::Inflector < Zeitwerk::Inflector
     when 'api'
       'API'
     else
-      ActiveSupport::Inflector.classify(basename)
+      ActiveSupport::Inflector.camelize(basename)
     end
   end
 end

@@ -13,4 +13,6 @@ class API::V1 < Grape::API::Instance
   get '/failing' do
     raise MyLib::BadRequest, 'bad request'
   end
+
+  mount API::Posts
 end
