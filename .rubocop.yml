@@ -3,3 +3,6 @@ inherit_from:
 
 AllCops:
   TargetRubyVersion: "2.5"
+Metrics/ParameterLists:
+  Exclude:
+    - lib/grape/app/helpers/caching.rb
