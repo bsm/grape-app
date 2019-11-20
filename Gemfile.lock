@@ -1,11 +1,11 @@
 PATH
   remote: .
   specs:
-    grape-app (0.8.1)
+    grape-app (0.8.2)
       activesupport
       grape (>= 1.2)
       grape-entity
-      rack-cors
+      rack-cors (>= 1.1)
       rack-ssl-enforcer
       thor
       zeitwerk (>= 2.1)
@@ -56,18 +56,19 @@ GEM
     mustermann (1.0.3)
     mustermann-grape (1.0.0)
       mustermann (~> 1.0.0)
-    parallel (1.18.0)
+    parallel (1.19.0)
     parser (2.6.5.0)
       ast (~> 2.4.0)
     rack (2.0.7)
     rack-accept (0.4.5)
       rack (>= 0.4)
-    rack-cors (1.0.3)
+    rack-cors (1.1.0)
+      rack (>= 2.0.0)
     rack-ssl-enforcer (0.2.9)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rainbow (3.0.0)
-    rake (13.0.0)
+    rake (13.0.1)
     rspec (3.9.0)
       rspec-core (~> 3.9.0)
       rspec-expectations (~> 3.9.0)

@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name          = 'grape-app'
-  s.version       = '0.8.1'
+  s.version       = '0.8.2'
   s.authors       = ['Black Square Media Ltd']
   s.email         = ['info@blacksquaremedia.com']
   s.summary       = %(Standalone Grape API apps)
@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'activesupport'
   s.add_dependency 'grape', '>= 1.2'
   s.add_dependency 'grape-entity'
-  s.add_dependency 'rack-cors'
+  s.add_dependency 'rack-cors', '>= 1.1'
   s.add_dependency 'rack-ssl-enforcer'
   s.add_dependency 'thor'
   s.add_dependency 'zeitwerk', '>= 2.1'
