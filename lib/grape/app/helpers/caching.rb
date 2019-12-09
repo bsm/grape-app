@@ -24,7 +24,7 @@ module Grape::App::Helpers::Caching
     etag = ActiveSupport::Digest.hexdigest(ActiveSupport::Cache.expand_cache_key(etag))
     header 'ETag', etag
     header 'Last-Modified', last_modified.httpdate if last_modified
-    cache_control(cache_control)
+    cache_control(cache_control) unless cache_control.empty?
 
     if_modified_since = headers['If-Modified-Since']
     if_modified_since = Time.rfc2822(if_modified_since) rescue nil if if_modified_since # rubocop:disable Style/RescueModifier
