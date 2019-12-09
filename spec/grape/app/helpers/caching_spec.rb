@@ -9,7 +9,6 @@ RSpec.describe Grape::App::Helpers::Caching do
     get '/articles'
     expect(last_response.status).to eq(200)
     expect(last_response.headers).to include(
-      'Cache-Control' => 'public',
       'Content-Type'  => 'application/json',
       'ETag'          => '975ca8804565c1a569450d61090b2743',
       'Last-Modified' => 'Fri, 05 Jan 2018 11:25:20 GMT',
@@ -29,6 +28,14 @@ RSpec.describe Grape::App::Helpers::Caching do
     expect(last_response.status).to eq(200)
     get '/articles', {}, 'HTTP_IF_MODIFIED_SINCE' => 'Fri, 05 Jan 2018 11:25:20 GMT', 'HTTP_IF_NONE_MATCH' => 'other'
     expect(last_response.status).to eq(200)
+  end
+
+  it 'should support cache-control' do
+    get '/articles?public=true'
+    expect(last_response.status).to eq(200)
+    expect(last_response.headers).to include(
+      'Cache-Control' => 'public',
+    )
   end
 
   it 'should handle stale? (with cache-control)' do

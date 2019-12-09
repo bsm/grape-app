@@ -39,7 +39,8 @@ class TestAPI < Grape::API::Instance
 
   get '/articles' do
     scope = Article.all
-    fresh_when(scope, public: true)
+    opts  = params[:public] ? { public: params[:public] } : {}
+    fresh_when(scope, **opts)
     scope.map(&:to_hash)
   end
 
