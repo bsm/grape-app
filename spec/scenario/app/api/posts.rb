@@ -1,4 +1,4 @@
-class API::Posts < Grape::API::Instance
+class API::Posts < Grape::API
   get '/posts' do
     []
   end

@@ -31,7 +31,7 @@ class Article
   end
 end
 
-class TestAPI < Grape::API::Instance
+class TestAPI < Grape::API
   format :json
 
   helpers Grape::App::Helpers::Caching

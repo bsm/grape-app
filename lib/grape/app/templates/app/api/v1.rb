@@ -1,4 +1,4 @@
-class API::V1 < Grape::API::Instance
+class API::V1 < Grape::API
   version 'v1'
   prefix  'api'
   format  :json
@@ -11,5 +11,4 @@ class API::V1 < Grape::API::Instance
 
   # Mount components
   # mount API::Posts
-
 end
