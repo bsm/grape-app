@@ -8,7 +8,7 @@ require 'rack/cors'
 require 'rack/ssl-enforcer'
 require 'zeitwerk'
 
-class Grape::App < Grape::API::Instance
+class Grape::App < Grape::API
   class << self
 
     # Run initializers
