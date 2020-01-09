@@ -24,14 +24,13 @@ module Grape::App::CLI
     def init_lib
       empty_directory File.join(name, 'lib', name)
     end
-
   end
 
   class Runner < Thor
     register Builder, :new, 'new NAME', 'create a new application'
 
     desc 'console ENV', 'Launch console'
-    def console(env='development')
+    def console(env = 'development')
       ENV['GRAPE_ENV'] = env
       require File.expand_path('config/environment', Dir.pwd)
 

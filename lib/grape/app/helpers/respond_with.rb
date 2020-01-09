@@ -6,7 +6,7 @@ module Grape::App::Helpers::RespondWith
   end
 
   # @param [ActiveRecord::Base] record validated record
-  def respond_with(record, opts={})
+  def respond_with(record, opts = {})
     unless record.errors.empty?
       opts[:with] = Errors
       status 400

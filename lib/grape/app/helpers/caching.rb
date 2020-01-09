@@ -17,14 +17,14 @@ module Grape::App::Helpers::Caching
   #     article
   #   end
   #
-  def fresh_when(object=nil, etag: nil, last_modified: nil, **cache_control)
+  def fresh_when(object = nil, etag: nil, last_modified: nil, **cache_control)
     etag ||= object
     last_modified ||= object.try(:updated_at) || object.try(:maximum, :updated_at)
 
     etag = ActiveSupport::Digest.hexdigest(ActiveSupport::Cache.expand_cache_key(etag))
     header 'ETag', etag
     header 'Last-Modified', last_modified.httpdate if last_modified
-    cache_control(cache_control) unless cache_control.empty?
+    cache_control(**cache_control) unless cache_control.empty?
 
     if_modified_since = headers['If-Modified-Since']
     if_modified_since = Time.rfc2822(if_modified_since) rescue nil if if_modified_since # rubocop:disable Style/RescueModifier
@@ -49,7 +49,7 @@ module Grape::App::Helpers::Caching
   #     stats = article.really_expensive_call if stale?(article)
   #   end
   #
-  def stale?(object=nil, **freshness_opts)
+  def stale?(object = nil, **freshness_opts)
     fresh_when(object, **freshness_opts)
     true
   end

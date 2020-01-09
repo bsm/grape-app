@@ -11,7 +11,6 @@ ActiveRecord::Tasks::DatabaseTasks.tap do |config|
 end
 
 namespace :db do
-
   Rake::Task['load_config'].clear
 
   task load_config: :environment do
@@ -47,5 +46,4 @@ namespace :db do
     desc 'Prepare test DB'
     task :prepare
   end
-
 end

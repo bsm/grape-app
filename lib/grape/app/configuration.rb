@@ -1,5 +1,4 @@
 class Grape::App::Configuration < ActiveSupport::InheritableOptions
-
   def middleware(&block)
     self[:middleware] ||= []
     self[:middleware].push(block) if block
@@ -22,5 +21,4 @@ class Grape::App::Configuration < ActiveSupport::InheritableOptions
       end
     end
   end
-
 end
