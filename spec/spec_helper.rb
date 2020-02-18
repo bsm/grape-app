@@ -44,6 +44,14 @@ class TestAPI < Grape::API
     scope.map(&:to_hash)
   end
 
+  get '/no_records' do
+    scope = []
+
+    opts = params[:public] ? { public: params[:public] } : {}
+    fresh_when(scope, **opts)
+    scope.map(&:to_hash)
+  end
+
   get '/articles/:id' do
     article = Article.all.first
     article.to_hash if stale?(article, stale_if_error: 5, extras: { a: 1, b: 2 })

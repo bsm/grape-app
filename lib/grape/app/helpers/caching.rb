@@ -19,6 +19,8 @@ module Grape::App::Helpers::Caching
   #
   def fresh_when(object = nil, etag: nil, last_modified: nil, **cache_control)
     etag ||= object
+    return if object.blank?
+
     last_modified ||= object.try(:updated_at) || object.try(:maximum, :updated_at)
 
     etag = ActiveSupport::Digest.hexdigest(ActiveSupport::Cache.expand_cache_key(etag))

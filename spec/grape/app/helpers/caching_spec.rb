@@ -28,6 +28,10 @@ RSpec.describe Grape::App::Helpers::Caching do
     expect(last_response.status).to eq(200)
     get '/articles', {}, 'HTTP_IF_MODIFIED_SINCE' => 'Fri, 05 Jan 2018 11:25:20 GMT', 'HTTP_IF_NONE_MATCH' => 'other'
     expect(last_response.status).to eq(200)
+
+    get '/no_records'
+    expect(last_response.status).to eq(200)
+    expect(last_response.original_headers).not_to include('ETag', 'Last-Modified')
   end
 
   it 'should support cache-control' do
