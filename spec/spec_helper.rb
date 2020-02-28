@@ -13,8 +13,8 @@ class Article
     end
 
     def each
-      yield Article.new(id: 1, title: 'Welcome', updated_at: Time.at(1515151510).utc)
-      yield Article.new(id: 2, title: 'Bye', updated_at: Time.at(1515151520).utc)
+      yield Article.new(id: 1, title: 'Welcome', updated_at: Time.at(1515151510).utc, created_at: Time.at(1515151500).utc)
+      yield Article.new(id: 2, title: 'Bye', updated_at: Time.at(1515151520).utc, created_at: Time.at(1515151500).utc)
     end
   end
 
@@ -25,6 +25,7 @@ class Article
   attribute :id
   attribute :title
   attribute :updated_at
+  attribute :created_at
 
   def to_param
     id.to_s
@@ -42,6 +43,13 @@ class TestAPI < Grape::API
     opts  = params[:public] ? { public: params[:public] } : {}
     fresh_when(scope, **opts)
     scope.map(&:to_hash)
+  end
+
+  get '/articles/never_updated' do
+    article = Article.all.first
+    article.updated_at = nil
+
+    fresh_when(article, last_modified_field: :created_at)
   end
 
   get '/articles/:id' do
