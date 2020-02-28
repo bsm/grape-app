@@ -17,10 +17,9 @@ module Grape::App::Helpers::Caching
   #     article
   #   end
   #
-  def fresh_when(object = nil, etag: nil, last_modified: nil, **cache_control)
+  def fresh_when(object = nil, etag: nil, last_modified: nil, last_modified_field: :updated_at, **cache_control)
     etag ||= object
-    last_modified ||= object.try(:updated_at) || object.try(:maximum, :updated_at)
-
+    last_modified = object.try(last_modified_field) || object.try(:maximum, last_modified_field) if last_modified.nil?
     etag = ActiveSupport::Digest.hexdigest(ActiveSupport::Cache.expand_cache_key(etag))
     header 'ETag', etag
     header 'Last-Modified', last_modified.httpdate if last_modified

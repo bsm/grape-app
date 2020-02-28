@@ -30,6 +30,14 @@ RSpec.describe Grape::App::Helpers::Caching do
     expect(last_response.status).to eq(200)
   end
 
+  it 'should handle fresh_when for records that were never updated' do
+    get '/articles/never_updated'
+    expect(last_response.status).to eq(200)
+    expect(last_response.headers).to include(
+      'Last-Modified' => 'Fri, 05 Jan 2018 11:25:00 GMT',
+    )
+  end
+
   it 'should support cache-control' do
     get '/articles?public=true'
     expect(last_response.status).to eq(200)
@@ -51,6 +59,7 @@ RSpec.describe Grape::App::Helpers::Caching do
       'id'         => 1,
       'title'      => 'Welcome',
       'updated_at' => '2018-01-05 11:25:10 UTC',
+      'created_at' => '2018-01-05 11:25:00 UTC',
     )
 
     get '/articles/1', {}, 'HTTP_IF_NONE_MATCH' => last_response.headers['ETag']
