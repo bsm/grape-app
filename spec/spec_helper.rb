@@ -1,6 +1,7 @@
 ENV['RACK_ENV'] ||= 'test'
 require 'grape-app'
 require 'rack/test'
+require 'virtus'
 
 class Article
   include Virtus.model
