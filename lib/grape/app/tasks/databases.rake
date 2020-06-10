@@ -33,12 +33,12 @@ namespace :db do
     ar_version = [ActiveRecord::VERSION::MAJOR, ActiveRecord::VERSION::MINOR].join('.')
 
     FileUtils.mkdir_p(migrations_path)
-    File.write path, <<-MIGRATION.strip_heredoc
+    File.write path, <<-RUBY.strip_heredoc
       class #{name.camelize} < ActiveRecord::Migration[#{ar_version}]
         def change
         end
       end
-    MIGRATION
+    RUBY
     puts path
   end
 
