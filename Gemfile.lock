@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    grape-app (0.8.5)
+    grape-app (0.8.6)
       activesupport
       grape (>= 1.2)
       grape-entity
@@ -35,7 +35,7 @@ GEM
     concurrent-ruby (1.1.6)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
-    diff-lcs (1.4.2)
+    diff-lcs (1.4.4)
     dry-configurable (0.11.6)
       concurrent-ruby (~> 1.0)
       dry-core (~> 0.4, >= 0.4.7)
@@ -115,7 +115,7 @@ GEM
       rubocop-ast (>= 0.0.3, < 1.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 2.0)
-    rubocop-ast (0.0.3)
+    rubocop-ast (0.1.0)
       parser (>= 2.7.0.1)
     ruby-progressbar (1.10.1)
     ruby2_keywords (0.0.2)
@@ -130,7 +130,7 @@ GEM
       coercible (~> 1.0)
       descendants_tracker (~> 0.0, >= 0.0.3)
       equalizer (~> 0.0, >= 0.0.9)
-    zeitwerk (2.3.0)
+    zeitwerk (2.3.1)
 
 PLATFORMS
   ruby
