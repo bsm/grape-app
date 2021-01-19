@@ -5,7 +5,7 @@ RSpec.describe Grape::App::Helpers::Params do
 
   let(:app) { TestAPI }
 
-  it 'should limit params' do
+  it 'limits params' do
     post '/articles', title: 'Today', fresh: true, id: 1234, updated_at: Time.now
     expect(last_response.status).to eq(201)
     expect(JSON.parse(last_response.body)).to eq(

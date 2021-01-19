@@ -12,7 +12,7 @@ RSpec.configure do |config|
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with :truncation
   end
-  config.around :each do |example|
+  config.around do |example|
     DatabaseCleaner.cleaning { example.run }
   end
 
