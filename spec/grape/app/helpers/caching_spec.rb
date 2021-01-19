@@ -5,7 +5,7 @@ RSpec.describe Grape::App::Helpers::Caching do
 
   let(:app) { TestAPI }
 
-  it 'should handle fresh-when' do
+  it 'handles fresh-when' do
     get '/articles'
     expect(last_response.status).to eq(200)
     expect(last_response.headers).to include(
@@ -30,7 +30,7 @@ RSpec.describe Grape::App::Helpers::Caching do
     expect(last_response.status).to eq(200)
   end
 
-  it 'should handle fresh_when for records that were never updated' do
+  it 'handles fresh_when for records that were never updated' do
     get '/articles/never_updated'
     expect(last_response.status).to eq(200)
     expect(last_response.headers).to include(
@@ -38,7 +38,7 @@ RSpec.describe Grape::App::Helpers::Caching do
     )
   end
 
-  it 'should support cache-control' do
+  it 'supports cache-control' do
     get '/articles?public=true'
     expect(last_response.status).to eq(200)
     expect(last_response.headers).to include(
@@ -46,7 +46,7 @@ RSpec.describe Grape::App::Helpers::Caching do
     )
   end
 
-  it 'should handle stale? (with cache-control)' do
+  it 'handles stale? (with cache-control)' do
     get '/articles/1'
     expect(last_response.status).to eq(200)
     expect(last_response.headers).to include(
