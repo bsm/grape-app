@@ -1,6 +1,8 @@
 Grape::App.configure do |config|
-  # Force SSL
-  # config.force_ssl = true
+  # Force SSL, please see https://github.com/tobmatth/rack-ssl-enforcer
+  # for configuration options.
+  #
+  # config.force_ssl = { strict: true }
 
   # CORS is disabled by default, please see https://github.com/cyu/rack-cors
   # for configuration options.

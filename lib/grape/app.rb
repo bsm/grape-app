@@ -72,7 +72,12 @@ class Grape::App < Grape::API
       config = self.config
       @middleware ||= Rack::Builder.new do
         use Rack::Cors, &config.cors if config.cors
-        use Rack::SslEnforcer if config.force_ssl
+
+        if config.force_ssl.is_a?(Hash)
+          use Rack::SslEnforcer, **config.force_ssl
+        elsif config.force_ssl
+          use Rack::SslEnforcer
+        end
         config.middleware.each do |block|
           instance_eval(&block)
         end
