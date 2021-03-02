@@ -3,14 +3,46 @@ require 'spec_helper'
 RSpec.describe Grape::App::Helpers::Caching do
   include Rack::Test::Methods
 
-  let(:app) { TestAPI }
+  let :app do
+    helper = described_class
+    Class.new(Grape::API) do
+      format :json
+
+      helpers helper
+
+      get '/articles' do
+        scope = Article.order(:id)
+        opts  = params[:public] ? { public: params[:public] } : {}
+        fresh_when(scope, **opts)
+        scope.to_a
+      end
+
+      get '/articles/never_updated' do
+        article = Article.first
+        article.updated_at = nil
+
+        fresh_when(article, last_modified_field: :created_at)
+      end
+
+      get '/articles/:id' do
+        article = Article.first
+        article if stale?(article, stale_if_error: 5, extras: { a: 1, b: 2 })
+      end
+    end
+  end
+  let(:created_at) { Time.at(1515151500).utc }
+
+  before do
+    Article.create! title: 'Welcome', created_at: created_at, updated_at: created_at + 10
+    Article.create! title: 'Bye', created_at: created_at, updated_at: created_at + 20
+  end
 
   it 'handles fresh-when' do
     get '/articles'
     expect(last_response.status).to eq(200)
     expect(last_response.headers).to include(
       'Content-Type'  => 'application/json',
-      'ETag'          => '975ca8804565c1a569450d61090b2743',
+      'ETag'          => 'a5f6c4b024510c9835d8d70cbd3ed00c',
       'Last-Modified' => 'Fri, 05 Jan 2018 11:25:20 GMT',
     )
     expect(JSON.parse(last_response.body).size).to eq(2)
@@ -52,21 +84,21 @@ RSpec.describe Grape::App::Helpers::Caching do
     expect(last_response.headers).to include(
       'Cache-Control' => 'private, stale-if-error=5, a=1, b=2',
       'Content-Type'  => 'application/json',
-      'ETag'          => 'c4ca4238a0b923820dcc509a6f75849b',
+      'ETag'          => '0154407bafc97186a494a05e0652ff61',
       'Last-Modified' => 'Fri, 05 Jan 2018 11:25:10 GMT',
     )
     expect(JSON.parse(last_response.body)).to eq(
       'id'         => 1,
       'title'      => 'Welcome',
-      'updated_at' => '2018-01-05 11:25:10 UTC',
-      'created_at' => '2018-01-05 11:25:00 UTC',
+      'updated_at' => '2018-01-05T11:25:10.000Z',
+      'created_at' => '2018-01-05T11:25:00.000Z',
     )
 
     get '/articles/1', {}, 'HTTP_IF_NONE_MATCH' => last_response.headers['ETag']
     expect(last_response.status).to eq(304)
     expect(last_response.headers).to include(
       'Cache-Control' => 'private, stale-if-error=5, a=1, b=2',
-      'ETag'          => 'c4ca4238a0b923820dcc509a6f75849b',
+      'ETag'          => '0154407bafc97186a494a05e0652ff61',
       'Last-Modified' => 'Fri, 05 Jan 2018 11:25:10 GMT',
     )
   end

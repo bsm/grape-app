@@ -9,6 +9,7 @@ class API::V1 < Grape::API
   #   error_response message: e.message, status: 404
   # end
 
-  # Mount components
+  # Mount components:
+  #
   # mount API::Posts
 end

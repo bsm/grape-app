@@ -46,7 +46,7 @@ RSpec.describe Grape::App do
 
   it 'prepares middleware' do
     expect(subject.middleware).to be_instance_of(Rack::Builder)
-    expect(subject.middleware.send(:instance_variable_get, :@use).size).to eq(2)
+    expect(subject.middleware.send(:instance_variable_get, :@use).size).to eq(3)
     expect(subject.middleware.send(:instance_variable_get, :@run)).to be(subject)
   end
 
