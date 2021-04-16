@@ -1,70 +1,16 @@
 ENV['RACK_ENV'] ||= 'test'
 require 'grape-app'
 require 'rack/test'
-require 'virtus'
+require 'active_record'
 
-class Article
-  include Virtus.model
-
-  class Scope
-    include Enumerable
-
-    def maximum(*)
-      map(&:updated_at).max
-    end
-
-    def each
-      yield Article.new(id: 1, title: 'Welcome', updated_at: Time.at(1515151510).utc, created_at: Time.at(1515151500).utc)
-      yield Article.new(id: 2, title: 'Bye', updated_at: Time.at(1515151520).utc, created_at: Time.at(1515151500).utc)
-    end
-  end
-
-  def self.all
-    Scope.new
-  end
-
-  attribute :id
-  attribute :title
-  attribute :updated_at
-  attribute :created_at
-
-  def to_param
-    id.to_s
+ActiveRecord::Base.configurations = { 'test' => { 'adapter' => 'sqlite3', 'database' => ':memory:' } }
+ActiveRecord::Base.establish_connection :test
+ActiveRecord::Base.connection.instance_eval do
+  create_table :articles do |t|
+    t.string :title
+    t.timestamps
   end
 end
 
-class TestAPI < Grape::API
-  format :json
-
-  helpers Grape::App::Helpers::Caching
-  helpers Grape::App::Helpers::Params
-
-  get '/articles' do
-    scope = Article.all
-    opts  = params[:public] ? { public: params[:public] } : {}
-    fresh_when(scope, **opts)
-    scope.map(&:to_hash)
-  end
-
-  get '/articles/never_updated' do
-    article = Article.all.first
-    article.updated_at = nil
-
-    fresh_when(article, last_modified_field: :created_at)
-  end
-
-  get '/articles/:id' do
-    article = Article.all.first
-    article.to_hash if stale?(article, stale_if_error: 5, extras: { a: 1, b: 2 })
-  end
-
-  params do
-    requires :title
-    optional :fresh
-  end
-  post '/articles' do
-    attrs = { id: 9, updated_at: Time.at(1515151515).utc }
-    attrs.update(declared_params)
-    Article.new(attrs).to_hash
-  end
+class Article < ActiveRecord::Base
 end

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    grape-app (0.8.7)
+    grape-app (0.8.8)
       activesupport
       grape (>= 1.2)
       grape-entity
@@ -13,28 +13,20 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    activemodel (6.1.3)
-      activesupport (= 6.1.3)
-    activerecord (6.1.3)
-      activemodel (= 6.1.3)
-      activesupport (= 6.1.3)
-    activesupport (6.1.3)
+    activemodel (6.1.3.1)
+      activesupport (= 6.1.3.1)
+    activerecord (6.1.3.1)
+      activemodel (= 6.1.3.1)
+      activesupport (= 6.1.3.1)
+    activesupport (6.1.3.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
     ast (2.4.2)
-    axiom-types (0.1.1)
-      descendants_tracker (~> 0.0.4)
-      ice_nine (~> 0.11.0)
-      thread_safe (~> 0.3, >= 0.3.1)
     builder (3.2.4)
-    coercible (1.0.0)
-      descendants_tracker (~> 0.0.1)
     concurrent-ruby (1.1.8)
-    descendants_tracker (0.0.4)
-      thread_safe (~> 0.3, >= 0.3.1)
     diff-lcs (1.4.4)
     dry-configurable (0.12.1)
       concurrent-ruby (~> 1.0)
@@ -45,7 +37,7 @@ GEM
     dry-core (0.5.0)
       concurrent-ruby (~> 1.0)
     dry-inflector (0.2.0)
-    dry-logic (1.1.0)
+    dry-logic (1.1.1)
       concurrent-ruby (~> 1.0)
       dry-core (~> 0.5, >= 0.5)
     dry-types (1.5.1)
@@ -54,20 +46,18 @@ GEM
       dry-core (~> 0.5, >= 0.5)
       dry-inflector (~> 0.1, >= 0.1.2)
       dry-logic (~> 1.0, >= 1.0.2)
-    equalizer (0.0.11)
-    grape (1.5.2)
+    grape (1.5.3)
       activesupport
       builder
       dry-types (>= 1.1)
       mustermann-grape (~> 1.0.0)
       rack (>= 1.3.0)
       rack-accept
-    grape-entity (0.8.2)
+    grape-entity (0.9.0)
       activesupport (>= 3.0.0)
       multi_json (>= 1.3.2)
-    i18n (1.8.9)
+    i18n (1.8.10)
       concurrent-ruby (~> 1.0)
-    ice_nine (0.11.2)
     minitest (5.14.4)
     multi_json (1.15.0)
     mustermann (1.1.1)
@@ -75,7 +65,7 @@ GEM
     mustermann-grape (1.0.1)
       mustermann (>= 1.0.0)
     parallel (1.20.1)
-    parser (3.0.0.0)
+    parser (3.0.1.0)
       ast (~> 2.4.1)
     rack (2.2.3)
     rack-accept (0.4.5)
@@ -88,7 +78,7 @@ GEM
     rainbow (3.0.0)
     rake (13.0.3)
     regexp_parser (2.1.1)
-    rexml (3.2.4)
+    rexml (3.2.5)
     rspec (3.10.0)
       rspec-core (~> 3.10.0)
       rspec-expectations (~> 3.10.0)
@@ -102,7 +92,7 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.10.0)
     rspec-support (3.10.2)
-    rubocop (1.11.0)
+    rubocop (1.12.1)
       parallel (~> 1.10)
       parser (>= 3.0.0.0)
       rainbow (>= 2.2.2, < 4.0)
@@ -113,13 +103,13 @@ GEM
       unicode-display_width (>= 1.4.0, < 3.0)
     rubocop-ast (1.4.1)
       parser (>= 2.7.1.5)
-    rubocop-bsm (0.5.4)
+    rubocop-bsm (0.5.6)
       rubocop (~> 1.0)
       rubocop-performance
       rubocop-rails
       rubocop-rake
       rubocop-rspec
-    rubocop-performance (1.10.1)
+    rubocop-performance (1.10.2)
       rubocop (>= 0.90.0, < 2.0)
       rubocop-ast (>= 0.4.0)
     rubocop-rails (2.9.1)
@@ -135,15 +125,9 @@ GEM
     ruby2_keywords (0.0.4)
     sqlite3 (1.4.2)
     thor (1.1.0)
-    thread_safe (0.3.6)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.0.0)
-    virtus (1.0.5)
-      axiom-types (~> 0.1)
-      coercible (~> 1.0)
-      descendants_tracker (~> 0.0, >= 0.0.3)
-      equalizer (~> 0.0, >= 0.0.9)
     zeitwerk (2.4.2)
 
 PLATFORMS
@@ -158,7 +142,6 @@ DEPENDENCIES
   rspec
   rubocop-bsm
   sqlite3
-  virtus
 
 BUNDLED WITH
    2.2.5

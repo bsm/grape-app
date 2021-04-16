@@ -78,9 +78,12 @@ class Grape::App < Grape::API
         elsif config.force_ssl
           use Rack::SslEnforcer
         end
+
         config.middleware.each do |block|
           instance_eval(&block)
         end
+
+        use Grape::App::Middleware::ConnectionManagement if defined?(ActiveRecord)
 
         run Grape::App
       end
@@ -107,3 +110,4 @@ end
 require 'grape/app/configuration'
 require 'grape/app/helpers'
 require 'grape/app/inflector'
+require 'grape/app/middleware'

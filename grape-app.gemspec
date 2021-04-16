@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name          = 'grape-app'
-  s.version       = '0.8.7'
+  s.version       = '0.8.8'
   s.authors       = ['Black Square Media Ltd']
   s.email         = ['info@blacksquaremedia.com']
   s.summary       = %(Standalone Grape API apps)
@@ -29,5 +29,4 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec'
   s.add_development_dependency 'rubocop-bsm'
   s.add_development_dependency 'sqlite3'
-  s.add_development_dependency 'virtus'
 end
