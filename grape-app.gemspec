@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name          = 'grape-app'
-  s.version       = '0.8.8'
+  s.version       = '0.9.0'
   s.authors       = ['Black Square Media Ltd']
   s.email         = ['info@blacksquaremedia.com']
   s.summary       = %(Standalone Grape API apps)
@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.test_files    = `git ls-files -z -- spec/*`.split("\x0")
   s.executables   = ['grape-app']
   s.require_paths = ['lib']
-  s.required_ruby_version = '>= 2.6'
+  s.required_ruby_version = '>= 2.7'
 
   s.add_dependency 'activesupport'
   s.add_dependency 'grape', '>= 1.2'
@@ -29,4 +29,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec'
   s.add_development_dependency 'rubocop-bsm'
   s.add_development_dependency 'sqlite3'
+  s.metadata['rubygems_mfa_required'] = 'true'
 end

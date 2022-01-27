@@ -35,6 +35,7 @@ class Grape::App < Grape::API
 
       # Load app
       require_one 'app', 'api'
+      Zeitwerk::Loader.eager_load_all if Grape::App.config.eager_load
     end
 
     # @return [Grape::App::Configuration] the configuration
