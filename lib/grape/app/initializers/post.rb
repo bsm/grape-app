@@ -13,8 +13,12 @@ if defined?(ActiveRecord)
     configurations[Grape::App.env.to_s]['url'] ||= ENV['DATABASE_URL']
   end
 
+  if ActiveRecord.respond_to?(:default_timezone=)
+    ActiveRecord.default_timezone = :utc
+  else
+    ActiveRecord::Base.default_timezone = :utc
+  end
   ActiveRecord::Base.configurations = configurations
-  ActiveRecord::Base.default_timezone = :utc
   ActiveRecord::Base.establish_connection(Grape::App.env.to_sym)
 
   Grape::App.middleware.use ActiveRecord::ConnectionAdapters::ConnectionManagement if defined?(ActiveRecord::ConnectionAdapters::ConnectionManagement)
