@@ -32,7 +32,37 @@ RSpec.describe Grape::App do
   it 'configures i18n' do
     expect(I18n.load_path).to include(subject.root.join('config', 'locales', 'en.yml').to_s)
     expect(I18n.default_locale).to eq(:en)
-    expect(I18n.exception_handler).to be_instance_of(Proc)
+    expect(I18n.exception_handler).to be_a(I18n::ExceptionHandler)
+  end
+
+  it 'configures ActiveSupport' do
+    expect(ActiveSupport.to_time_preserves_timezone).to be(true)
+    expect(ActiveSupport.utc_to_local_returns_utc_offset_times).to be(true)
+    expect(ActiveSupport::Digest.hash_digest_class).to be(OpenSSL::Digest::SHA256)
+    expect(ActiveSupport::MessageEncryptor.use_authenticated_message_encryption).to be(true)
+    if ActiveSupport::VERSION::MAJOR >= 7
+      expect(ActiveSupport::KeyGenerator.hash_digest_class).to be(OpenSSL::Digest::SHA256)
+      expect(ActiveSupport::IsolatedExecutionState.isolation_level).to be(:thread)
+      expect(Digest::UUID.use_rfc4122_namespaced_uuids).to be(true)
+    end
+  end
+
+  it 'configures ActiveRecord' do
+    if ActiveRecord::VERSION::MAJOR >= 7
+      expect(ActiveRecord.default_timezone).to be(:utc)
+      expect(ActiveRecord.legacy_connection_handling).to be(false)
+      expect(ActiveRecord.verify_foreign_keys_for_fixtures).to be(true)
+      expect(ActiveRecord::Base.partial_inserts).to be(false)
+      expect(ActiveRecord::Base.automatic_scope_inversing).to be(true)
+    end
+    expect(ActiveRecord::Base.belongs_to_required_by_default).to be(true)
+    expect(ActiveRecord::Base.cache_versioning).to be(true)
+    expect(ActiveRecord::Base.collection_cache_versioning).to be(true)
+    expect(ActiveRecord::Base.has_many_inversing).to be(true)
+  end
+
+  it 'configures ActiveJob' do
+    expect(ActiveJob::Base.retry_jitter).to eq(0.15)
   end
 
   it 'reads env specific initializers' do
