@@ -1,12 +1,15 @@
 require 'bundler/setup'
 require 'pathname'
+require 'openssl'
 require 'grape'
-require 'active_support/string_inquirer'
-require 'active_support/configurable'
-require 'active_support/core_ext/time/zones'
 require 'rack/cors'
 require 'rack/ssl-enforcer'
 require 'zeitwerk'
+
+ENV['RAILS_DISABLE_DEPRECATED_TO_S_CONVERSION'] ||= 'true'
+require 'active_support/all'
+require 'active_support/string_inquirer'
+require 'active_support/configurable'
 
 class Grape::App < Grape::API
   class << self
