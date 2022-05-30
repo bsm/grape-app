@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name          = 'grape-app'
-  s.version       = '0.10.0'
+  s.version       = '0.10.1'
   s.authors       = ['Black Square Media Ltd']
   s.email         = ['info@blacksquaremedia.com']
   s.summary       = %(Standalone Grape API apps)
@@ -9,7 +9,6 @@ Gem::Specification.new do |s|
   s.license       = 'MIT'
 
   s.files         = `git ls-files -z`.split("\x0").reject {|f| f.match(%r{^spec/}) }
-  s.test_files    = `git ls-files -z -- spec/*`.split("\x0")
   s.executables   = ['grape-app']
   s.require_paths = ['lib']
   s.required_ruby_version = '>= 2.7'

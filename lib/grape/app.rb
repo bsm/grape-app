@@ -62,7 +62,7 @@ class Grape::App < Grape::API
 
     # @return [ActiveSupport::StringInquirer] env name
     def env
-      @env ||= ActiveSupport::StringInquirer.new(ENV['GRAPE_ENV'] || ENV['RACK_ENV'] || 'development')
+      @env ||= ActiveSupport::StringInquirer.new(ENV.fetch('GRAPE_ENV') { ENV.fetch('RACK_ENV', 'development') })
     end
 
     # @return [Zeitwerk::Loader] loader

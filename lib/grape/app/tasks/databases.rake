@@ -23,11 +23,10 @@ namespace :db do
 
   desc 'Create a new migration using NAME'
   task migration: :environment do
-    abort 'No NAME specified. Example usage: `rake db:migration NAME=create_widgets`' unless ENV['NAME']
+    name = ENV.fetch('NAME', nil)
+    abort 'No NAME specified. Example usage: `rake db:migration NAME=create_widgets`' unless name
 
     migrations_path = ActiveRecord::Migrator.migrations_paths.first
-
-    name = ENV['NAME']
     path = File.join(migrations_path, "#{Time.now.utc.strftime('%Y%m%d%H%M%S')}_#{name}.rb")
 
     ar_version = [ActiveRecord::VERSION::MAJOR, ActiveRecord::VERSION::MINOR].join('.')
