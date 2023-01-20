@@ -4,7 +4,7 @@ end
 
 desc 'Launch console'
 task console: :environment do
-  ::ARGV.clear
+  ARGV.clear
 
   require 'irb'
   require 'irb/completion'
