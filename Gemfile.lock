@@ -139,7 +139,6 @@ PLATFORMS
 DEPENDENCIES
   activejob
   activerecord
-  bundler
   grape-app!
   rack-test
   rake

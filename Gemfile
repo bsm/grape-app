@@ -3,7 +3,6 @@ gemspec
 
 gem 'activejob'
 gem 'activerecord'
-gem 'bundler'
 gem 'rack-test'
 gem 'rake'
 gem 'rspec'
