@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name          = 'grape-app'
-  s.version       = '0.11.0'
+  s.version       = '0.11.1'
   s.authors       = ['Black Square Media Ltd']
   s.email         = ['info@blacksquaremedia.com']
   s.summary       = %(Standalone Grape API apps)
@@ -22,13 +22,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'thor'
   s.add_dependency 'zeitwerk', '>= 2.6'
 
-  s.add_development_dependency 'activejob'
-  s.add_development_dependency 'activerecord'
-  s.add_development_dependency 'bundler'
-  s.add_development_dependency 'rack-test'
-  s.add_development_dependency 'rake'
-  s.add_development_dependency 'rspec'
-  s.add_development_dependency 'rubocop-bsm'
-  s.add_development_dependency 'sqlite3'
   s.metadata['rubygems_mfa_required'] = 'true'
 end

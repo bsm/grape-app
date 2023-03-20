@@ -1,6 +1,11 @@
 source 'https://rubygems.org'
 gemspec
 
+gem 'activejob', '~> 6.1'
 gem 'activesupport', '~> 6.1'
 gem 'activerecord', '~> 6.1'
-gem 'activejob', '~> 6.1'
+gem 'rack-test'
+gem 'rake'
+gem 'rspec'
+gem 'rubocop-bsm'
+gem 'sqlite3'
