@@ -86,7 +86,7 @@ RSpec.describe Grape::App do
     expect(last_response).to be_ok
     expect(last_response.body).to eq(%({"status":"OK"}))
     expect(last_response.headers).to include(
-      'Access-Control-Allow-Origin' => '*',
+      'access-control-allow-origin' => '*',
       'X-MyApp'                     => 'true',
     )
 
@@ -95,7 +95,7 @@ RSpec.describe Grape::App do
     expect(last_response).to be_bad_request
     expect(last_response.body).to eq(%({"error":"bad request"}))
     expect(last_response.headers).to include(
-      'Access-Control-Allow-Origin' => '*',
+      'access-control-allow-origin' => '*',
       'X-MyApp'                     => 'true',
     )
   end
