@@ -18,7 +18,6 @@ module Grape::App::Helpers::Caching
   #   end
   #
   def fresh_when(object = nil, etag: nil, last_modified: nil, last_modified_field: :updated_at, **cache_control)
-    p "fresh_when: #{object}"
     etag ||= object
     last_modified = object.try(last_modified_field) || object.try(:maximum, last_modified_field) if last_modified.nil?
     etag = ActiveSupport::Digest.hexdigest(ActiveSupport::Cache.expand_cache_key(etag))
@@ -26,12 +25,9 @@ module Grape::App::Helpers::Caching
     header 'Last-Modified', last_modified.httpdate if last_modified
     cache_control(**cache_control) unless cache_control.empty?
 
-    if_modified_since = headers['If-Modified-Since']
+    if_modified_since = headers['if-modified-since']
     if_modified_since = Time.rfc2822(if_modified_since) rescue nil if if_modified_since # rubocop:disable Style/RescueModifier
-    if_none_match     = headers['If-None-Match']
-
-    p "if_modified_since: #{if_modified_since}"
-    p "if_none_match: #{if_none_match}"
+    if_none_match     = headers['if-none-match']
     return unless if_modified_since || if_none_match
 
     fresh = true

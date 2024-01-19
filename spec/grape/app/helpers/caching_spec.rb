@@ -49,17 +49,17 @@ RSpec.describe Grape::App::Helpers::Caching do
 
     get '/articles', {}, 'HTTP_IF_NONE_MATCH' => last_response.headers['ETag']
     expect(last_response.status).to eq(304)
-    # get '/articles', {}, 'HTTP_IF_MODIFIED_SINCE' => 'Fri, 05 Jan 2018 11:25:20 GMT'
-    # expect(last_response.status).to eq(304)
-    # get '/articles', {}, 'HTTP_IF_NONE_MATCH' => last_response.headers['ETag'], 'HTTP_IF_MODIFIED_SINCE' => 'Fri, 05 Jan 2018 11:25:21 GMT'
-    # expect(last_response.status).to eq(304)
+    get '/articles', {}, 'HTTP_IF_MODIFIED_SINCE' => 'Fri, 05 Jan 2018 11:25:20 GMT'
+    expect(last_response.status).to eq(304)
+    get '/articles', {}, 'HTTP_IF_NONE_MATCH' => last_response.headers['ETag'], 'HTTP_IF_MODIFIED_SINCE' => 'Fri, 05 Jan 2018 11:25:21 GMT'
+    expect(last_response.status).to eq(304)
 
-    # get '/articles', {}, 'HTTP_IF_MODIFIED_SINCE' => 'Fri, 05 Jan 2018 11:25:19 GMT'
-    # expect(last_response.status).to eq(200)
-    # get '/articles', {}, 'HTTP_IF_MODIFIED_SINCE' => 'Fri, 05 Jan 2018 11:25:19 GMT', 'HTTP_IF_NONE_MATCH' => last_response.headers['ETag']
-    # expect(last_response.status).to eq(200)
-    # get '/articles', {}, 'HTTP_IF_MODIFIED_SINCE' => 'Fri, 05 Jan 2018 11:25:20 GMT', 'HTTP_IF_NONE_MATCH' => 'other'
-    # expect(last_response.status).to eq(200)
+    get '/articles', {}, 'HTTP_IF_MODIFIED_SINCE' => 'Fri, 05 Jan 2018 11:25:19 GMT'
+    expect(last_response.status).to eq(200)
+    get '/articles', {}, 'HTTP_IF_MODIFIED_SINCE' => 'Fri, 05 Jan 2018 11:25:19 GMT', 'HTTP_IF_NONE_MATCH' => last_response.headers['ETag']
+    expect(last_response.status).to eq(200)
+    get '/articles', {}, 'HTTP_IF_MODIFIED_SINCE' => 'Fri, 05 Jan 2018 11:25:20 GMT', 'HTTP_IF_NONE_MATCH' => 'other'
+    expect(last_response.status).to eq(200)
   end
 
   it 'handles fresh_when for records that were never updated' do
