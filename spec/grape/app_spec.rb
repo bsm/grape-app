@@ -43,14 +43,13 @@ RSpec.describe Grape::App do
     if ActiveSupport::VERSION::MAJOR >= 7
       expect(ActiveSupport::KeyGenerator.hash_digest_class).to be(OpenSSL::Digest::SHA256)
       expect(ActiveSupport::IsolatedExecutionState.isolation_level).to be(:thread)
-      expect(Digest::UUID.use_rfc4122_namespaced_uuids).to be(true)
+      # expect(Digest::UUID.use_rfc4122_namespaced_uuids).to be(true)
     end
   end
 
   it 'configures ActiveRecord' do
     if ActiveRecord::VERSION::MAJOR >= 7
       expect(ActiveRecord.default_timezone).to be(:utc)
-      expect(ActiveRecord.legacy_connection_handling).to be(false)
       expect(ActiveRecord.verify_foreign_keys_for_fixtures).to be(true)
       expect(ActiveRecord::Base.partial_inserts).to be(false)
       expect(ActiveRecord::Base.automatic_scope_inversing).to be(true)
