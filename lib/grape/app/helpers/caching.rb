@@ -33,7 +33,6 @@ module Grape::App::Helpers::Caching
     fresh = true
     fresh &&= last_modified && if_modified_since >= last_modified if if_modified_since
     fresh &&= if_none_match == etag if if_none_match
-
     error! 'Not Modified', 304 if fresh
   end
 
