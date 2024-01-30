@@ -8,6 +8,7 @@ ActiveSupport::Digest.hash_digest_class = OpenSSL::Digest::SHA256
 ActiveSupport::KeyGenerator.hash_digest_class = OpenSSL::Digest::SHA256 if ActiveSupport::KeyGenerator.respond_to?(:hash_digest_class=)
 ActiveSupport::MessageEncryptor.use_authenticated_message_encryption = true
 ActiveSupport::IsolatedExecutionState.isolation_level = :thread if defined?(ActiveSupport::IsolatedExecutionState)
+# This is legacy and removed in removed with Rails 7.1
 Digest::UUID.use_rfc4122_namespaced_uuids = true if Digest::UUID.respond_to?(:use_rfc4122_namespaced_uuids=)
 
 # Set default time-zone
@@ -43,10 +44,13 @@ if defined?(ActiveRecord)
     ActiveRecord::Base.default_timezone = :utc
   end
 
-  if ActiveRecord.respond_to?(:legacy_connection_handling=)
-    ActiveRecord.legacy_connection_handling = false
-  else
-    ActiveRecord::Base.legacy_connection_handling = false
+  # legacy_connection_handling was deprecated in ActiveRecord 7
+  if ActiveRecord::VERSION::MAJOR < 7
+    if ActiveRecord.respond_to?(:legacy_connection_handling=)
+      ActiveRecord.legacy_connection_handling = false
+    else
+      ActiveRecord::Base.legacy_connection_handling = false
+    end
   end
 
   ActiveRecord.tap do |c|

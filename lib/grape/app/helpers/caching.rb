@@ -25,9 +25,9 @@ module Grape::App::Helpers::Caching
     header 'Last-Modified', last_modified.httpdate if last_modified
     cache_control(**cache_control) unless cache_control.empty?
 
-    if_modified_since = headers['If-Modified-Since']
+    if_modified_since = headers['if-modified-since']
     if_modified_since = Time.rfc2822(if_modified_since) rescue nil if if_modified_since # rubocop:disable Style/RescueModifier
-    if_none_match     = headers['If-None-Match']
+    if_none_match     = headers['if-none-match']
     return unless if_modified_since || if_none_match
 
     fresh = true
