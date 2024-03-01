@@ -4,6 +4,7 @@ gemspec
 gem 'activejob', '~> 6.1'
 gem 'activesupport', '~> 6.1'
 gem 'activerecord', '~> 6.1'
+gem 'rack-cors', '2.0.0' # https://github.com/cyu/rack-cors/issues/274
 gem 'rack-test'
 gem 'rake'
 gem 'rspec'
